@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:elevation="0dp">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/surface"
+            app:title="Edit Note"
+            app:titleTextColor="@color/on_surface" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Title -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Note title"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:inputType="textCapSentences" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Tag -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginBottom="8dp"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                app:startIconDrawable="@drawable/ic_tag">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etTag"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Tag (e.g. work, personal)"
+                    android:textSize="14sp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Formatting Toolbar -->
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:scrollbars="none"
+                android:background="@color/surface"
+                android:elevation="2dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:paddingHorizontal="8dp">
+
+                    <ImageButton android:id="@+id/btnBold"
+                        android:layout_width="40dp" android:layout_height="40dp"
+                        android:src="@drawable/ic_format_bold"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:contentDescription="Bold" />
+
+                    <ImageButton android:id="@+id/btnItalic"
+                        android:layout_width="40dp" android:layout_height="40dp"
+                        android:src="@drawable/ic_format_italic"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:contentDescription="Italic" />
+
+                    <ImageButton android:id="@+id/btnUnderline"
+                        android:layout_width="40dp" android:layout_height="40dp"
+                        android:src="@drawable/ic_format_underline"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:contentDescription="Underline" />
+
+                    <ImageButton android:id="@+id/btnStrike"
+                        android:layout_width="40dp" android:layout_height="40dp"
+                        android:src="@drawable/ic_format_strikethrough"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:contentDescription="Strikethrough" />
+
+                    <View android:layout_width="1dp" android:layout_height="24dp"
+                        android:background="@color/divider" android:layout_marginHorizontal="4dp" />
+
+                    <ImageButton android:id="@+id/btnH1"
+                        android:layout_width="40dp" android:layout_height="40dp"
+                        android:src="@drawable/ic_h1"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:contentDescription="Heading 1" />
+
+                    <ImageButton android:id="@+id/btnH2"
+                        android:layout_width="40dp" android:layout_height="40dp"
+                        android:src="@drawable/ic_h2"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:contentDescription="Heading 2" />
+
+                    <View android:layout_width="1dp" android:layout_height="24dp"
+                        android:background="@color/divider" android:layout_marginHorizontal="4dp" />
+
+                    <ImageButton android:id="@+id/btnBullet"
+                        android:layout_width="40dp" android:layout_height="40dp"
+                        android:src="@drawable/ic_format_list_bulleted"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:contentDescription="Bullet list" />
+
+                    <ImageButton android:id="@+id/btnNumber"
+                        android:layout_width="40dp" android:layout_height="40dp"
+                        android:src="@drawable/ic_format_list_numbered"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:contentDescription="Numbered list" />
+
+                    <ImageButton android:id="@+id/btnQuote"
+                        android:layout_width="40dp" android:layout_height="40dp"
+                        android:src="@drawable/ic_format_quote"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:contentDescription="Quote" />
+
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <!-- Rich Text Editor -->
+            <LinearLayout
+                android:id="@+id/editorContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="300dp"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <jp.wasabeef.richeditor.RichEditor
+                    android:id="@+id/richEditor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="300dp" />
+
+            </LinearLayout>
+
+            <!-- Color Picker -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Note Color"
+                android:textSize="12sp"
+                android:textColor="@color/on_surface_variant"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp" />
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none"
+                android:layout_marginBottom="8dp">
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/colorPickerGroup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    app:singleSelection="true" />
+
+            </HorizontalScrollView>
+
+            <!-- PDF Section -->
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="16dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:padding="16dp">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnAttachPdf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Attach PDF"
+                    app:icon="@drawable/ic_attach_file"
+                    style="@style/Widget.Material3.Button.OutlinedButton" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnViewPdf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="View PDF"
+                    android:layout_marginStart="8dp"
+                    app:icon="@drawable/ic_pdf"
+                    android:visibility="gone"
+                    style="@style/Widget.Material3.Button.TonalButton" />
+
+            </LinearLayout>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/pdfChip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginBottom="16dp"
+                android:visibility="gone"
+                app:closeIconVisible="true"
+                app:chipIcon="@drawable/ic_pdf" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
